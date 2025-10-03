@@ -1,4 +1,3 @@
-/* Estilos gerais para a aplicação */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background-color: #f4f7f9;
@@ -7,7 +6,6 @@ body {
   padding: 20px;
 }
 
-/* Container principal para centralizar o conteúdo */
 .app-container {
   max-width: 600px;
   margin: 0 auto;
@@ -22,7 +20,6 @@ h1 {
   color: #2c3e50;
 }
 
-/* Estilo do formulário de adicionar tarefa */
 .add-task-form {
   display: flex;
   gap: 10px;
@@ -31,7 +28,6 @@ h1 {
 
 .add-task-form input {
   flex-grow: 1;
-  /* Faz o input ocupar o máximo de espaço possível */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -53,7 +49,6 @@ h1 {
   background-color: #2980b9;
 }
 
-/* Estilo da lista de tarefas */
 .task-list {
   list-style-type: none;
   padding: 0;
@@ -67,7 +62,6 @@ h1 {
   border-bottom: 1px solid #eee;
 }
 
-/* Estilo para o último item da lista, para não ter borda dupla */
 .task-item:last-child {
   border-bottom: none;
 }
@@ -76,7 +70,6 @@ h1 {
   font-size: 18px;
 }
 
-/* Estilo para tarefas completas */
 .task-item.completed span {
   text-decoration: line-through;
   color: #95a5a6;

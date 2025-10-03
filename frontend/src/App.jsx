@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './App.css'; // O CSS que acabamos de editar
+import './App.css';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -40,11 +40,9 @@ function App() {
   };
 
   return (
-    // Adiciona a classe do container principal
     <div className="app-container">
       <h1>Sistema de Controle de Tarefas</h1>
 
-      {/* Adiciona a classe do formulário */}
       <form onSubmit={handleAddTask} className="add-task-form">
         <input
           type="text"
@@ -55,10 +53,8 @@ function App() {
         <button type="submit">Adicionar</button>
       </form>
 
-      {/* Adiciona a classe da lista */}
       <ul className="task-list">
         {tasks.map(task => (
-          // Adiciona a classe do item e a classe 'completed' condicionalmente
           <li key={task._id} className={`task-item ${task.completed ? 'completed' : ''}`}>
             <span>{task.title}</span>
             <div className="buttons">
