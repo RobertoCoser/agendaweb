@@ -149,6 +149,6 @@ Credenciais de Administrador:
 
 Email: admin@admin.com
 
-Senha: admin123
+Senha: admin
 
 Criar Novos Usuários: Use a tela de "Registre-se" tanto na web quanto no mobile.
