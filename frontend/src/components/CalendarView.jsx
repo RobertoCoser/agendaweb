@@ -86,7 +86,7 @@ function CalendarView({ tasks, onSelectTask }) {
 
   return (
     <div className="app-container">
-      <h1>Calendário de Compromissos</h1>
+      <h1>Calendário</h1>
       <div style={containerStyle}>
         {pickerView !== 'none' ? renderPicker() : (
           <Calendar

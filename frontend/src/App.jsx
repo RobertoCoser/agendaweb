@@ -13,17 +13,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [notification, setNotification] = useState('');
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [filters, setFilters] = useState({ text: '', category: 'todas', status: 'todos' });
-
-  useEffect(() => {
-    document.body.className = `${theme}-theme`;
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
-  };
 
   useEffect(() => {
     axios.get('http://localhost:3333/tasks')
@@ -109,11 +99,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar
-        onAddTaskClick={handleOpenModalForAdd}
-        theme={theme}
-        toggleTheme={toggleTheme}
-      />
+      <Navbar onAddTaskClick={handleOpenModalForAdd} />
       <Notification message={notification} />
       <main className="main-content">
         <Routes>

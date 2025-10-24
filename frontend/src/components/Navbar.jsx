@@ -1,12 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaPlus, FaSun, FaMoon } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 
-function Navbar({ onAddTaskClick, theme, toggleTheme }) {
+function Navbar({ onAddTaskClick }) {
     return (
         <nav className="navbar">
             <div className="navbar-brand">
-                Agenda de Compromissos
+                Yday :)
             </div>
             <div className="navbar-links">
                 <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
@@ -19,9 +19,6 @@ function Navbar({ onAddTaskClick, theme, toggleTheme }) {
             <div className="navbar-actions">
                 <button onClick={onAddTaskClick} className="navbar-add-btn" title="Adicionar Nova Tarefa">
                     <FaPlus /> Adicionar
-                </button>
-                <button onClick={toggleTheme} className="theme-toggle-btn" title={theme === 'light' ? 'Mudar para tema escuro' : 'Mudar para tema claro'}>
-                    {theme === 'light' ? <FaMoon /> : <FaSun />}
                 </button>
             </div>
         </nav>
