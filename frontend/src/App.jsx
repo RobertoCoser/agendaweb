@@ -1,37 +1,61 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 import axios from 'axios';
 import CalendarView from './components/CalendarView';
 import TaskList from './components/TaskList';
 import Navbar from './components/Navbar';
 import TaskModal from './components/TaskModal';
 import Notification from './components/Notification';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
 function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/*" element={<MainLayout />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}
+
+function MainLayout() {
   const [tasks, setTasks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [notification, setNotification] = useState('');
   const [filters, setFilters] = useState({ text: '', category: 'todas', status: 'todos' });
+  const { token } = useAuth();
 
   useEffect(() => {
-    axios.get('http://localhost:3333/tasks')
-      .then(response => { setTasks(response.data); })
-      .catch(error => { console.error("Houve um erro ao buscar as tarefas!", error); });
-  }, []);
+    if (token) {
+      axios.get('http://localhost:3333/tasks')
+        .then(response => { setTasks(response.data); })
+        .catch(error => { console.error("Houve um erro ao buscar as tarefas!", error); });
+    } else {
+      setTasks([]);
+    }
+  }, [token]);
 
   useEffect(() => {
     if (notification) {
-      const timer = setTimeout(() => {
-        setNotification('');
-      }, 3000);
+      const timer = setTimeout(() => { setNotification(''); }, 3000);
       return () => clearTimeout(timer);
     }
   }, [notification]);
 
   const handleFilterChange = (filterName, value) => {
-    setFilters(prevFilters => ({ ...prevFilters, [filterName]: value }));
+    setFilters(prev => ({ ...prev, [filterName]: value }));
   };
 
   const clearFilters = () => {
@@ -98,7 +122,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <>
       <Navbar onAddTaskClick={handleOpenModalForAdd} />
       <Notification message={notification} />
       <main className="main-content">
@@ -123,7 +147,7 @@ function App() {
         onSave={handleSaveTask}
         task={editingTask}
       />
-    </BrowserRouter>
+    </>
   );
 }
 

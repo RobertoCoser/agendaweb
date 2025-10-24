@@ -1,12 +1,21 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { FaPlus } from 'react-icons/fa';
 
-function Navbar({ onAddTaskClick }) {
+function Navbar() {
+    const { logout } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
+
     return (
         <nav className="navbar">
             <div className="navbar-brand">
-                Yday :)
+                Agenda de Compromissos
             </div>
             <div className="navbar-links">
                 <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
@@ -17,8 +26,11 @@ function Navbar({ onAddTaskClick }) {
                 </NavLink>
             </div>
             <div className="navbar-actions">
-                <button onClick={onAddTaskClick} className="navbar-add-btn" title="Adicionar Nova Tarefa">
+                <button className="navbar-add-btn" title="Adicionar Nova Tarefa">
                     <FaPlus /> Adicionar
+                </button>
+                <button onClick={handleLogout} className="logout-btn">
+                    Sair
                 </button>
             </div>
         </nav>
