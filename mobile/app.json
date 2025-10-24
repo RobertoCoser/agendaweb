@@ -1,0 +1,7 @@
+{
+  "name": "mobile",
+  "slug": "mobile",
+  "android": {
+    "package": "com.anonymous.mobile"
+  }
+}

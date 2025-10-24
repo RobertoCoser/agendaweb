@@ -1,102 +1,154 @@
 Timely - Agenda de Compromissos
-Timely é uma aplicação web completa para gerenciamento de tarefas e compromissos, projetada para ajudar usuários a organizar suas atividades diárias de forma eficiente e visual. O sistema conta com um backend robusto em Node.js e um frontend reativo e moderno construído com React.
+Timely é uma plataforma completa para gerenciamento de tarefas e compromissos, com interfaces para web e mobile. O sistema foi projetado para ajudar usuários a organizar suas atividades diárias de forma eficiente, com um backend robusto em Node.js e interfaces reativas construídas com React e React Native.
 
 ✨ Funcionalidades Principais
-Autenticação de Usuários: Sistema seguro de registro e login com senhas criptografadas e tokens JWT.
+Plataforma Dupla: Interface web e aplicativo mobile nativo compartilhando o mesmo backend.
 
-Gerenciamento de Tarefas (CRUD): Crie, edite, exclua e visualize tarefas de forma completa.
+Autenticação Segura: Sistema de registro e login com senhas criptografadas (Bcrypt) e gerenciamento de sessão via JSON Web Tokens (JWT).
 
-Visualização em Calendário: Visualize todos os compromissos em um calendário interativo com navegação por mês, semana, dia e agenda.
+Gerenciamento Completo de Tarefas (CRUD): Crie, leia, atualize e exclua tarefas através de uma interface modal intuitiva.
 
-Navegação Avançada no Calendário: Seleção rápida de mês e ano para facilitar a navegação em longos períodos.
+Visualização em Calendário: Um calendário interativo exibe todos os compromissos, permitindo navegação por mês, semana, dia e agenda.
 
-Categorias e Ícones: Organize tarefas em categorias (Reunião, Aniversário, Prova, etc.) com ícones correspondentes para fácil identificação.
+Navegação Avançada no Calendário: Seletores de mês e ano para pular rapidamente para qualquer data desejada.
+
+Categorias com Ícones: Organize tarefas em categorias (Reunião, Aniversário, Prova, etc.) com ícones correspondentes para fácil identificação visual.
 
 Filtros Avançados: Filtre a lista de tarefas por texto, categoria ou status (pendente/concluído).
 
-Marcação de Status: Alterne facilmente o status de uma tarefa entre concluída e pendente.
+Notificações de Feedback: Mensagens de sucesso informam o usuário sobre o resultado de suas ações.
 
-Notificações de Feedback: Mensagens de sucesso informam o usuário sobre ações bem-sucedidas (criar, editar, excluir).
-
-Usuário Admin Padrão: O sistema gera automaticamente um usuário administrador com dados de exemplo na primeira inicialização, facilitando testes e demonstrações.
+Seed de Dados: Um usuário admin com tarefas de exemplo é criado automaticamente na primeira inicialização do backend para facilitar testes e demonstrações.
 
 🚀 Tecnologias Utilizadas
 Backend
-Node.js: Ambiente de execução do servidor.
+Node.js / Express.js: Para a construção da API REST.
 
-Express.js: Framework para a construção da API REST.
+MongoDB: Banco de dados NoSQL para armazenamento de dados.
 
-MongoDB: Banco de dados NoSQL para armazenamento persistente de dados.
-
-JSON Web Tokens (JWT): Para autenticação e gerenciamento de sessões seguras.
+JSON Web Token (JWT): Para autenticação de usuários.
 
 Bcrypt.js: Para criptografia de senhas.
 
-Frontend
-React (Vite): Biblioteca para a construção da interface de usuário.
+Frontend (Web)
+React (Vite): Para a construção da interface de usuário.
 
-React Router: Para o gerenciamento de rotas e navegação entre páginas.
+React Router: Para o gerenciamento de rotas.
 
-Axios: Para realizar as requisições HTTP para o backend.
+Axios: Para requisições HTTP.
 
-React Big Calendar: Componente para a exibição do calendário interativo.
+React Big Calendar: Para a exibição do calendário interativo.
 
-React Icons: Para a utilização de ícones na interface.
+Frontend (Mobile)
+React Native / Expo: Para o desenvolvimento do aplicativo mobile.
+
+Expo Router: Para o sistema de navegação baseado em arquivos.
+
+React Native Calendars: Para a exibição do calendário nativo.
+
+Context API: Para o gerenciamento do estado de autenticação.
 
 📋 Pré-requisitos
-Antes de começar, certifique-se de que você tem os seguintes softwares instalados na sua máquina:
+Antes de começar, certifique-se de que você tem os seguintes softwares instalados e configurados na sua máquina:
 
-Node.js (versão 14 ou superior)
+Node.js (versão 18 ou superior).
 
-npm (geralmente instalado com o Node.js)
+npm (geralmente instalado com o Node.js).
 
-MongoDB Community Server (servidor do banco de dados rodando localmente)
+MongoDB Community Server: Essencial que o serviço do MongoDB esteja rodando localmente.
 
-⚙️ Instalação e Execução
-Siga os passos abaixo para rodar o projeto em um ambiente de desenvolvimento local.
+Java Development Kit (JDK) 17: Necessário para o build nativo do Android. Certifique-se de que a variável de ambiente JAVA_HOME está configurada corretamente.
+
+App Expo Go: Instalado no seu smartphone (Android/iOS) para testar o app mobile.
+
+⚙️ Instalação e Execução (Passo a Passo Detalhado)
+Siga os passos abaixo para configurar e rodar a aplicação completa (Web e Mobile) em seu ambiente de desenvolvimento.
 
 1. Clonar o Repositório
+Primeiro, clone o projeto do GitHub para a sua máquina local.
+
 Bash
 
 git clone https://github.com/seu-usuario/nome-do-repositorio.git
 cd nome-do-repositorio
 2. Configurar e Rodar o Backend
-Navegue até a pasta do backend e instale as dependências.
+O backend é o cérebro da aplicação e deve ser iniciado primeiro.
 
 Bash
 
+# 1. Navegue até a pasta do backend
 cd backend
+
+# 2. Instale as dependências
 npm install
-Após a instalação, inicie o servidor de desenvolvimento.
 
-Bash
-
+# 3. Inicie o servidor
 npm run dev
-O servidor estará rodando em http://localhost:3333. Na primeira inicialização, ele criará automaticamente o usuário admin@admin.com e o populará com tarefas de exemplo.
+O servidor estará rodando em http://localhost:3333. Na primeira inicialização, ele criará o usuário admin@admin.com e o populará com tarefas de exemplo. Deixe este terminal rodando.
 
-3. Configurar e Rodar o Frontend
-Em um novo terminal, navegue até a pasta do frontend e instale as dependências.
+3. Configurar e Rodar a Aplicação Web
+Em um novo terminal, siga os passos para a interface web.
 
 Bash
 
+# 1. Navegue até a pasta do frontend
 cd frontend
+
+# 2. Instale as dependências
 npm install
-Após a instalação, inicie a aplicação React.
+
+# 3. Inicie a aplicação web
+npm run dev
+A aplicação web estará disponível em http://localhost:5173. Você já pode fazer login com as credenciais de admin e usar o sistema.
+
+4. Configurar e Rodar o Aplicativo Mobile
+Esta etapa requer uma configuração de rede crucial.
+
+4.1. Encontrar seu Endereço de IP Local
+O app mobile não pode acessar localhost. Ele precisa do IP da sua máquina na rede local.
+
+No Windows: Abra o Prompt de Comando (cmd) e digite ipconfig. Procure pelo "Endereço IPv4" da sua conexão Wi-Fi ou Ethernet (ex: 192.168.0.10).
+
+No macOS/Linux: Abra o terminal e digite ifconfig ou ip addr.
+
+4.2. Configurar a Conexão
+Abra o arquivo mobile/config.js.
+
+Substitua o placeholder pelo seu endereço de IP real.
+
+JavaScript
+
+// mobile/config.js
+export const API_BASE_URL = 'http://SEU_IP_AQUI:3333';
+4.3. Instalar e Iniciar o App
+Em um terceiro terminal, siga os passos para a interface mobile.
 
 Bash
 
-npm run dev
-A aplicação estará disponível no seu navegador em http://localhost:5173 (ou na porta indicada no terminal).
+# 1. Navegue até a pasta do mobile
+cd mobile
 
-ใช้งาน Como Usar
-Abra a aplicação no seu navegador. Você será direcionado para a tela de login.
+# 2. Instale as dependências (pode demorar um pouco na primeira vez)
+npm install
 
-Para acessar com o perfil de administrador pré-configurado, utilize as seguintes credenciais:
+# 3. Inicie o servidor do Expo
+npx expo start
+Um QR code aparecerá no terminal.
+
+4.4. Rodar no seu Dispositivo
+Certifique-se de que seu smartphone e seu computador estão conectados na mesma rede Wi-Fi.
+
+Abra o aplicativo Expo Go no seu celular.
+
+Escaneie o QR code exibido no terminal.
+
+O aplicativo "Timely" será carregado no seu celular.
+
+💡 Como Usar
+Credenciais de Administrador:
 
 Email: admin@admin.com
 
-Senha: admin
+Senha: admin123
 
-Você também pode criar um novo usuário clicando no link "Registre-se".
-
-Após o login, você terá acesso a todas as funcionalidades do sistema.
+Criar Novos Usuários: Use a tela de "Registre-se" tanto na web quanto no mobile.
