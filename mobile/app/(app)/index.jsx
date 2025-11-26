@@ -1,9 +1,8 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { Calendar, Agenda, LocaleConfig } from 'react-native-calendars';
+import { Agenda, LocaleConfig } from 'react-native-calendars';
 import { useFocusEffect } from 'expo-router';
 import axios from 'axios';
-import { FontAwesome } from '@expo/vector-icons';
 
 LocaleConfig.locales['pt-br'] = {
     monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
@@ -38,21 +37,45 @@ const CalendarPage = () => {
         }
     };
 
-    useFocusEffect(useCallback(() => { setLoading(true); fetchTasks(); }, []));
+    useFocusEffect(
+        useCallback(() => {
+            setLoading(true);
+            fetchTasks();
+        }, [])
+    );
 
     const markedDates = useMemo(() => {
+        if (!Array.isArray(tasks)) return {};
+
         const marks = {};
         tasks.forEach(task => {
             const dateString = new Date(task.start).toISOString().split('T')[0];
             if (!marks[dateString]) {
                 marks[dateString] = { dots: [] };
             }
-            marks[dateString].dots.push({
-                key: task._id,
-                color: categoryColors[task.category] || '#6b7280',
-            });
+            const exists = marks[dateString].dots.find(d => d.key === task._id);
+            if (!exists) {
+                marks[dateString].dots.push({
+                    key: task._id,
+                    color: categoryColors[task.category] || '#6b7280',
+                });
+            }
         });
         return marks;
+    }, [tasks]);
+
+    const agendaItems = useMemo(() => {
+        if (!Array.isArray(tasks)) return {};
+
+        const items = {};
+        tasks.forEach(task => {
+            const dateString = new Date(task.start).toISOString().split('T')[0];
+            if (!items[dateString]) {
+                items[dateString] = [];
+            }
+            items[dateString].push(task);
+        });
+        return items;
     }, [tasks]);
 
     const renderItem = (item) => {
@@ -70,18 +93,6 @@ const CalendarPage = () => {
             </TouchableOpacity>
         );
     };
-
-    const agendaItems = useMemo(() => {
-        const items = {};
-        tasks.forEach(task => {
-            const dateString = new Date(task.start).toISOString().split('T')[0];
-            if (!items[dateString]) {
-                items[dateString] = [];
-            }
-            items[dateString].push(task);
-        });
-        return items;
-    }, [tasks]);
 
     return (
         <SafeAreaView style={styles.safeArea}>
@@ -105,7 +116,11 @@ const CalendarPage = () => {
                     dotColor: '#3b82f6',
                 }}
             />
-            {loading && <ActivityIndicator style={StyleSheet.absoluteFill} size="large" color="#3b82f6" />}
+            {loading && (
+                <View style={styles.loaderContainer}>
+                    <ActivityIndicator size="large" color="#3b82f6" />
+                </View>
+            )}
         </SafeAreaView>
     );
 };
@@ -124,10 +139,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.20,
+        shadowRadius: 1.41,
+        elevation: 2,
     },
     itemTitle: {
         fontSize: 16,
         fontWeight: '600',
+        color: '#1f2937',
     },
     itemNotes: {
         fontSize: 12,
@@ -148,6 +172,12 @@ const styles = StyleSheet.create({
     emptyDateText: {
         color: '#6b7280',
         fontSize: 14,
+    },
+    loaderContainer: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
 

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FontAwesome } from '@expo/vector-icons';
 import TaskModal from '../../components/TaskModal';
 import Notification from '../../components/Notification';
+import FilterBar from '../../components/FilterBar';
 
 const categoryIcons = {
     aniversario: <FontAwesome name="birthday-cake" size={20} color="#3b82f6" />,
@@ -63,6 +64,9 @@ const TasksPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingTask, setEditingTask] = useState(null);
     const [notification, setNotification] = useState('');
+
+    const [filters, setFilters] = useState({ text: '', category: 'todas', status: 'todos' });
+
     const params = useLocalSearchParams();
     const router = useRouter();
 
@@ -79,6 +83,7 @@ const TasksPage = () => {
             setTasks(response.data);
         } catch (error) {
             console.error("Erro ao buscar tarefas:", error);
+            setTasks([]);
         } finally {
             setLoading(false);
             setRefreshing(false);
@@ -89,29 +94,37 @@ const TasksPage = () => {
 
     useEffect(() => {
         if (notification) {
-            const timer = setTimeout(() => {
-                setNotification('');
-            }, 3000);
+            const timer = setTimeout(() => { setNotification(''); }, 3000);
             return () => clearTimeout(timer);
         }
     }, [notification]);
 
+    const getFilteredTasks = () => {
+        if (!Array.isArray(tasks)) return [];
+
+        return tasks.filter(task => {
+            const textMatch = task.title.toLowerCase().includes(filters.text.toLowerCase());
+            const categoryMatch = filters.category === 'todas' || task.category === filters.category;
+            const statusMatch = filters.status === 'todos' ||
+                (filters.status === 'pendente' && !task.completed) ||
+                (filters.status === 'concluido' && task.completed);
+            return textMatch && categoryMatch && statusMatch;
+        });
+    };
+
+    const handleFilterChange = (name, value) => {
+        setFilters(prev => ({ ...prev, [name]: value }));
+    };
+
+    const clearFilters = () => {
+        setFilters({ text: '', category: 'todas', status: 'todos' });
+    };
+
     const onRefresh = useCallback(() => { setRefreshing(true); fetchTasks(); }, []);
 
-    const handleOpenAddModal = () => {
-        setEditingTask(null);
-        setIsModalOpen(true);
-    };
-
-    const handleOpenEditModal = (task) => {
-        setEditingTask(task);
-        setIsModalOpen(true);
-    };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-        setEditingTask(null);
-    };
+    const handleOpenAddModal = () => { setEditingTask(null); setIsModalOpen(true); };
+    const handleOpenEditModal = (task) => { setEditingTask(task); setIsModalOpen(true); };
+    const handleCloseModal = () => { setIsModalOpen(false); setEditingTask(null); };
 
     const handleSaveTask = async (taskData) => {
         const isEditing = !!taskData._id;
@@ -163,11 +176,18 @@ const TasksPage = () => {
         return <ActivityIndicator style={styles.loader} size="large" color="#3b82f6" />;
     }
 
+    const filteredData = getFilteredTasks();
+
     return (
         <>
             <Notification message={notification} />
+            <FilterBar
+                filters={filters}
+                onFilterChange={handleFilterChange}
+                onClearFilters={clearFilters}
+            />
             <FlatList
-                data={tasks}
+                data={filteredData}
                 renderItem={({ item }) => <TaskItem item={item} onEdit={handleOpenEditModal} onDelete={handleDeleteTask} onToggle={handleToggleComplete} />}
                 keyExtractor={(item) => item._id}
                 style={styles.container}
@@ -197,6 +217,5 @@ const styles = StyleSheet.create({
     iconButton: { padding: 8 },
     emptyText: { textAlign: 'center', marginTop: 50, color: '#6b7280' },
 });
-
 
 export default TasksPage;
