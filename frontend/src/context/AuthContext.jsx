@@ -4,21 +4,25 @@ import axios from 'axios';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-    const [token, setToken] = useState(localStorage.getItem('token'));
+    const [token, setToken] = useState(null);
+    const [loading, setLoading] = useState(true); // Novo estado de carregamento
 
     useEffect(() => {
-        if (token) {
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            localStorage.setItem('token', token);
-        } else {
-            delete axios.defaults.headers.common['Authorization'];
-            localStorage.removeItem('token');
+        // Verifica o token no localStorage ao iniciar
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            setToken(storedToken);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
         }
-    }, [token]);
+        setLoading(false); // Finaliza o carregamento
+    }, []);
 
     const login = async (email, password) => {
         const response = await axios.post('http://localhost:3333/login', { email, password });
-        setToken(response.data.token);
+        const newToken = response.data.token;
+        setToken(newToken);
+        localStorage.setItem('token', newToken);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
     };
 
     const register = async (email, password) => {
@@ -27,10 +31,12 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         setToken(null);
+        localStorage.removeItem('token');
+        delete axios.defaults.headers.common['Authorization'];
     };
 
     return (
-        <AuthContext.Provider value={{ token, login, register, logout }}>
+        <AuthContext.Provider value={{ token, login, register, logout, loading }}>
             {children}
         </AuthContext.Provider>
     );

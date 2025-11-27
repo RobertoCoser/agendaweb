@@ -1,0 +1,83 @@
+_id,title,category,notes,start,end,completed,userId
+68fbe5b6d84cd0096ee8a9d1,Reunião Semanal de Alinhamento,reuniao,Discutir progresso do Projeto Phoenix.,2025-10-27T12:00:00.000Z,2025-10-27T13:30:00.000Z,true,68fbe5b6d84cd0096ee8a9d0
+68fbe5b6d84cd0096ee8a9d2,Brainstorm para novo App,reuniao,Sessão de ideias com a equipe de design.,2025-10-29T17:00:00.000Z,2025-10-29T18:00:00.000Z,true,68fbe5b6d84cd0096ee8a9d0
+68fbe5b6d84cd0096ee8a9d3,Prova de Cálculo II,prova,Estudar capítulos 5 e 6. Levar calculadora.,2025-11-05T22:00:00.000Z,2025-11-06T00:00:00.000Z,true,68fbe5b6d84cd0096ee8a9d0
+68fbe5b6d84cd0096ee8a9d4,Apresentação de Projeto Final,prova,Ensaiar a apresentação com o grupo.,2025-11-12T13:00:00.000Z,,true,68fbe5b6d84cd0096ee8a9d0
+68fbe5b6d84cd0096ee8a9d5,Aniversário da Amanda,aniversario,Comprar presente e enviar mensagem.,2025-11-23T03:00:00.000Z,,true,68fbe5b6d84cd0096ee8a9d0
+68fbe5b6d84cd0096ee8a9d6,Aniversário do Roberto,aniversario,Lembrar de ligar para os pais.,2025-12-16T03:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+68fbe5b6d84cd0096ee8a9d7,Entregar relatório mensal,tarefa,Coletar dados de vendas e marketing.,2025-10-31T20:00:00.000Z,,true,68fbe5b6d84cd0096ee8a9d0
+68fbe5b6d84cd0096ee8a9d8,Levar o carro para revisão,tarefa,Agendado na oficina 'Auto Certa'.,2025-11-03T11:30:00.000Z,,true,68fbe5b6d84cd0096ee8a9d0
+68fbe5b6d84cd0096ee8a9d9,Consulta médica - Dr. Silva,pessoal,Check-up anual.,2025-11-10T14:00:00.000Z,2025-11-10T14:45:00.000Z,true,68fbe5b6d84cd0096ee8a9d0
+68fbe5b6d84cd0096ee8a9da,Comprar ingressos para o cinema,pessoal,Verificar estreia do filme 'Interestelar 2'.,2025-10-28T23:00:00.000Z,,true,68fbe5b6d84cd0096ee8a9d0
+68fbe5b6d84cd0096ee8a9db,Pagar conta de luz,tarefa,Vencimento dia 10.,2025-11-10T03:00:00.000Z,,true,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be95,Code Freeze - Black Friday,tarefa,Congelamento de novas features. Apenas correções críticas permitidas até 02/12.,2025-11-14T18:00:00.000Z,,true,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be96,Teste de Carga - Servidores,tarefa,Simular 50x o tráfego normal para validar auto-scaling da AWS.,2025-11-17T14:00:00.000Z,2025-11-17T16:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be97,Alinhamento com Mkt - Promoções,reuniao,Verificar integridade dos preços importados para o Magalu e ML.,2025-11-20T10:00:00.000Z,2025-11-20T11:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be98,Aniversário do Chefe,aniversario,Comprar bolo e organizar vaquinha.,2025-11-21T00:00:00.000Z,,true,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be99,Revisão de Logs de Erro,tarefa,Limpar logs antigos e verificar erros de integração com APIs.,2025-11-24T09:00:00.000Z,2025-11-24T10:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be9a,WAR ROOM - Início Black Friday,reuniao,Monitoramento em tempo real da virada de preços. Pizza por conta da empresa.,2025-11-27T22:00:00.000Z,2025-11-27T04:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be9b,Plantão Black Friday (Manhã),tarefa,Monitorar fila de pedidos integrados.,2025-11-28T08:00:00.000Z,2025-11-28T14:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be9c,Dermatologista,pessoal,Consulta de rotina.,2025-11-29T10:30:00.000Z,2025-11-29T11:30:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be9d,Monitoramento Cyber Monday,tarefa,Focar em eletrônicos e hardware.,2025-12-01T09:00:00.000Z,2025-12-01T18:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be9e,Retrospectiva Black Friday,reuniao,Levantar pontos positivos e incidentes técnicos.,2025-12-03T14:00:00.000Z,2025-12-03T16:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5be9f,Curso de Kubernetes,prova,Estudar módulos 3 e 4 para certificação.,2025-12-06T19:00:00.000Z,2025-12-06T21:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5bea0,Confraternização da Firma,pessoal,Churrascaria. Não esquecer o Amigo Secreto.,2025-12-19T12:00:00.000Z,2025-12-19T16:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5bea1,Atualizar Certificado SSL,tarefa,Certificado do domínio principal vence dia 30.,2025-12-22T10:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5bea2,Natal - Folga,pessoal,Feliz Natal!,2025-12-25T00:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5bea3,Configurar Promoção Saldão de Janeiro,tarefa,Atualizar script de preços no ERP.,2026-01-05T09:00:00.000Z,2026-01-05T11:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5bea4,Reunião de Planejamento Q1 2026,reuniao,Definir roadmap de TI para o primeiro trimestre.,2026-01-08T14:00:00.000Z,2026-01-08T16:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5bea5,Aniversário de Namoro,aniversario,Reservar restaurante italiano.,2026-02-12T20:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5bea6,Backup Full dos Bancos,tarefa,Executar rotina manual de backup pós-vendas de fim de ano.,2026-01-15T23:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5bea7,Prova de Certificação AWS,prova,Exame agendado online. Testar webcam antes.,2026-01-20T18:00:00.000Z,2026-01-20T20:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5bea8,Refatoração do Módulo de Frete,tarefa,Otimizar cálculo de frete dos Correios.,2026-02-02T13:00:00.000Z,2026-02-02T17:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5bea9,Daily Stand-up,reuniao,Sincronização diária da equipe de dev.,2026-02-04T09:30:00.000Z,2026-02-04T10:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5beaa,Atualizar App Mobile na Store,tarefa,Publicar versão com correção de bugs de login.,2026-02-10T11:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5beab,Viagem Carnaval,pessoal,Casa de praia. Desligar o celular!,2026-02-14T08:00:00.000Z,2026-02-18T18:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927a971247d30ac85c5beac,Reunião Pós-Carnaval,reuniao,Verificar pendências acumuladas.,2026-02-19T10:00:00.000Z,2026-02-19T11:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bead,Monitoramento Natal 2025,tarefa,Acompanhar tráfego e estabilidade durante as vendas de Natal.,2025-12-24T08:00:00.000Z,2025-12-25T20:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beae,Plantão Ano Novo,tarefa,Verificar integridade dos servidores na virada do ano.,2025-12-31T22:00:00.000Z,2026-01-01T02:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beaf,Planejamento Anual 2026,reuniao,Definição de metas e orçamento de TI para o ano.,2026-01-05T14:00:00.000Z,2026-01-05T17:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beb0,Limpeza de Banco de Dados,tarefa,Arquivar logs antigos e otimizar índices pós-Black Friday.,2026-01-10T09:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beb1,Férias - Parte 1,pessoal,15 dias de descanso no litoral.,2026-01-15T00:00:00.000Z,2026-01-30T00:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beb2,Renovação Domínios,tarefa,Renovar domínios da empresa (.com.br e .com).,2026-02-02T10:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beb3,Reunião Mensal de Resultados,reuniao,Apresentação dos KPIs de Janeiro.,2026-02-05T09:00:00.000Z,2026-02-05T10:30:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beb4,Carnaval - Folga,pessoal,Feriado de Carnaval.,2026-02-16T00:00:00.000Z,2026-02-18T00:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beb5,Migração para Node.js v22,tarefa,Atualizar microserviços para a nova versão LTS do Node.,2026-02-23T08:00:00.000Z,2026-02-27T18:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beb6,Prova de Certificação Cloud,prova,Exame de Arquiteto de Soluções.,2026-03-04T14:00:00.000Z,2026-03-04T17:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beb7,Dia Internacional da Mulher - Campanha,tarefa,Verificar cupons e banners da campanha.,2026-03-08T09:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beb8,Aniversário da Mãe,aniversario,Jantar em família.,2026-09-07T19:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beb9,Revisão de Segurança Semestral,tarefa,PenTest e auditoria de acessos.,2026-03-20T09:00:00.000Z,2026-03-24T18:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beba,Kick-off Projeto Mobile 2.0,reuniao,Início do desenvolvimento da nova versão do App.,2026-04-01T10:00:00.000Z,2026-04-01T12:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bebb,Páscoa - Monitoramento,tarefa,Verificar pico de acessos na categoria de Chocolates.,2026-04-05T08:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bebc,Dentista,pessoal,Limpeza semestral.,2026-04-10T15:00:00.000Z,2026-04-10T16:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bebd,Treinamento de Equipe - React Native,reuniao,Workshop interno sobre novas features do Expo.,2026-04-22T14:00:00.000Z,2026-04-22T17:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bebe,Preparação Dia das Mães,tarefa,Testar carga nos servidores para a segunda maior data do ano.,2026-05-01T09:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bebf,Dia das Mães - Plantão,tarefa,Suporte nível 2 disponível.,2026-05-10T08:00:00.000Z,2026-05-10T18:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bec1,Avaliação de Desempenho,reuniao,Feedback 1:1 com o gestor.,2026-05-25T11:00:00.000Z,2026-05-25T12:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bec2,Dia dos Namorados - Configuração,tarefa,Ativar promoções de 'Compre e Ganhe'.,2026-06-08T10:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bec3,Curso de Gestão Ágil,prova,Prova final do curso de Scrum Master.,2026-06-15T19:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bec4,Festa Junina da Empresa,pessoal,Levar prato típico.,2026-06-26T17:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bec5,Inventário de Hardware,tarefa,Listar notebooks e periféricos para troca.,2026-07-02T09:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bec6,Férias - Parte 2,pessoal,Viagem para a serra.,2026-07-10T00:00:00.000Z,2026-07-20T00:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bec7,Upgrade de Servidor de Banco de Dados,tarefa,Janela de manutenção programada na madrugada.,2026-07-25T02:00:00.000Z,2026-07-25T05:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bec8,Planejamento Dia dos Pais,reuniao,Alinhamento com logística e comercial.,2026-08-03T14:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bec9,Dia dos Pais - Monitoramento,tarefa,Acompanhar dashboard de vendas em tempo real.,2026-08-09T09:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beca,Aniversário do Pai,aniversario,Almoço em família.,2026-02-21T12:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5becb,Refatoração Checkout,tarefa,Melhorar performance do carrinho de compras.,2026-08-20T09:00:00.000Z,2026-08-25T18:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5becc,Feriado 7 de Setembro,pessoal,Descanso.,2026-09-07T00:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5becd,Início Preparação Black Friday 2026,reuniao,Primeira reunião estratégica para a BF 2026.,2026-09-15T10:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bece,Prova de Inglês - Nível Avançado,prova,Teste de proficiência.,2026-09-28T18:30:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5becf,Dia das Crianças - Configuração,tarefa,Validar categorias de brinquedos e jogos.,2026-10-05T10:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bed0,Auditoria de Segurança Pré-BF,tarefa,Contratar empresa terceira para pentest.,2026-10-15T09:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bed2,Freeze de Código - BF 2026,tarefa,Nenhuma alteração em produção a partir de hoje.,2026-11-01T18:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bed3,Teste de Stress - BF 2026,tarefa,Validar nova infraestrutura de cache.,2026-11-10T14:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bed4,War Room - Black Friday 2026,reuniao,Plantão de 24h para virada de preços.,2026-11-26T20:00:00.000Z,2026-11-27T20:00:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bed5,Black Friday 2026 - Suporte,tarefa,Monitoramento intensivo de transações.,2026-11-27T00:00:00.000Z,2026-11-27T23:59:00.000Z,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bed6,Cyber Monday 2026,tarefa,Virada de chaves para Cyber Monday.,2026-11-30T08:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bed7,Review Black Friday,reuniao,Análise de números e performance técnica.,2026-12-03T15:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bed8,Confra da Firma 2026,pessoal,Festa de encerramento do ano.,2026-12-11T18:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bed9,Compra de Presentes Natal,pessoal,Shopping para compras de última hora.,2026-12-19T14:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5beda,Planejamento de Férias 2027,tarefa,Enviar solicitação de férias para o RH.,2026-12-21T10:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bedb,Natal 2026,pessoal,Ceia em família.,2026-12-25T00:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bedc,Plantão Réveillon,tarefa,Escala de sobreaviso.,2026-12-31T18:00:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
+6927aa05247d30ac85c5bedd,Ano Novo 2027,pessoal,Bem-vindo 2027!,2026-12-31T23:59:00.000Z,,false,68fbe5b6d84cd0096ee8a9d0
