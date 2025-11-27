@@ -5,6 +5,7 @@ import { useFocusEffect } from 'expo-router';
 import axios from 'axios';
 import TaskModal from '../../components/TaskModal';
 
+// Configuração de localização
 LocaleConfig.locales['pt-br'] = {
     monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
     monthNamesShort: ['Jan.', 'Fev.', 'Mar.', 'Abr.', 'Mai.', 'Jun.', 'Jul.', 'Ago.', 'Set.', 'Out.', 'Nov.', 'Dez.'],
@@ -26,7 +27,6 @@ const CalendarPage = () => {
     const [tasks, setTasks] = useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
     const [loading, setLoading] = useState(true);
-
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingTask, setEditingTask] = useState(null);
 
@@ -48,21 +48,23 @@ const CalendarPage = () => {
         }, [])
     );
 
+    // --- MEMOS ---
+
     const markedDates = useMemo(() => {
         if (!Array.isArray(tasks)) return {};
         const marks = {};
 
-        // Marca a data selecionada
-        marks[selectedDate] = { selected: true, selectedColor: '#3b82f6' };
+        // Marcação especial para Web
+        if (Platform.OS === 'web') {
+            marks[selectedDate] = { selected: true, selectedColor: '#3b82f6' };
+        }
 
         tasks.forEach(task => {
             const dateString = new Date(task.start).toISOString().split('T')[0];
             if (!marks[dateString]) {
                 marks[dateString] = { dots: [] };
             }
-            if (!marks[dateString].dots) {
-                marks[dateString].dots = []; // Garante que existe o array se já foi marcado como selected
-            }
+            if (!marks[dateString].dots) marks[dateString].dots = [];
 
             const exists = marks[dateString].dots.find(d => d.key === task._id);
             if (!exists) {
@@ -75,6 +77,7 @@ const CalendarPage = () => {
         return marks;
     }, [tasks, selectedDate]);
 
+    
     const agendaItems = useMemo(() => {
         if (!Array.isArray(tasks)) return {};
         const items = {};
@@ -83,15 +86,17 @@ const CalendarPage = () => {
             if (!items[dateString]) items[dateString] = [];
             items[dateString].push(task);
         });
-        if (!items[selectedDate]) items[selectedDate] = [];
         return items;
-    }, [tasks, selectedDate]);
+    }, [tasks]);
 
-    // Filtra tarefas do dia selecionado para a visualização Web
-    const selectedDayTasks = useMemo(() => {
+    // Filtro específico para Web
+    const webSelectedTasks = useMemo(() => {
         if (!Array.isArray(tasks)) return [];
         return tasks.filter(task => new Date(task.start).toISOString().split('T')[0] === selectedDate);
     }, [tasks, selectedDate]);
+
+
+    // --- HANDLERS ---
 
     const handleOpenEditModal = (task) => {
         setEditingTask(task);
@@ -112,6 +117,8 @@ const CalendarPage = () => {
             alert("Erro ao salvar tarefa");
         }
     };
+
+    // --- RENDERIZADORES ---
 
     const renderItem = (item) => {
         const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
@@ -145,7 +152,7 @@ const CalendarPage = () => {
         );
     }
 
-    // --- RENDERIZAÇÃO WEB (Calendar + List) ---
+    // --- VIEW WEB ---
     if (Platform.OS === 'web') {
         return (
             <SafeAreaView style={styles.safeArea}>
@@ -163,8 +170,8 @@ const CalendarPage = () => {
                             }}
                         />
                         <Text style={styles.webSectionTitle}>Agenda do dia {new Date(selectedDate).toLocaleDateString('pt-BR')}</Text>
-                        {selectedDayTasks.length > 0 ? (
-                            selectedDayTasks.map(item => (
+                        {webSelectedTasks.length > 0 ? (
+                            webSelectedTasks.map(item => (
                                 <View key={item._id} style={{ marginBottom: 10 }}>
                                     {renderItem(item)}
                                 </View>
@@ -179,10 +186,11 @@ const CalendarPage = () => {
         );
     }
 
-    // --- RENDERIZAÇÃO MOBILE (Agenda) ---
+    // --- VIEW MOBILE ---
     return (
         <SafeAreaView style={styles.safeArea}>
             <Agenda
+                // Key força remontagem limpa apenas se loading mudar
                 key={loading ? 'loading' : 'loaded'}
                 items={agendaItems}
                 selected={selectedDate}
@@ -192,7 +200,7 @@ const CalendarPage = () => {
                 rowHasChanged={(r1, r2) => r1.title !== r2.title}
                 markingType={'multi-dot'}
                 markedDates={markedDates}
-                onDayPress={(day) => { setSelectedDate(day.dateString); }}
+                onDayPress={(day) => setSelectedDate(day.dateString)}
                 loadItemsForMonth={() => { }}
                 theme={{
                     backgroundColor: '#f5f6f7',
@@ -215,6 +223,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#f5f6f7',
     },
+    // Estilos específicos para Web
     webContainer: {
         padding: 20,
         maxWidth: 800,
@@ -228,12 +237,13 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 10,
     },
+    // Estilos Gerais
     itemContainer: {
         backgroundColor: 'white',
         borderRadius: 8,
         padding: 15,
-        marginRight: Platform.OS === 'web' ? 0 : 10, // Ajuste para web
-        marginTop: Platform.OS === 'web' ? 0 : 17, // Ajuste para web
+        marginRight: Platform.OS === 'web' ? 0 : 10,
+        marginTop: Platform.OS === 'web' ? 0 : 17,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

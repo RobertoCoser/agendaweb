@@ -12,41 +12,51 @@ const AppLayout = () => {
     logout();
   };
 
+  // Componente do botão "Adicionar"
+  const AddButton = ({ routeName }) => (
+    <TouchableOpacity
+      onPress={() => router.push({ pathname: routeName, params: { openModal: 'true' } })}
+      style={{ marginRight: 15 }}
+    >
+      <FontAwesome name="plus" size={22} color="#3b82f6" />
+    </TouchableOpacity>
+  );
+
+  // Componente do botão "Sair"
+  const LogoutButton = () => (
+    <TouchableOpacity onPress={handleLogout} style={{ marginLeft: 15 }}>
+      <FontAwesome name="sign-out" size={24} color="#dc3545" />
+    </TouchableOpacity>
+  );
+
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: '#3b82f6',
         tabBarInactiveTintColor: '#6b7280',
+        headerTitleAlign: 'center',
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Calendário',
-          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="calendar" size={size} color={color} />
           ),
+          headerRight: () => <AddButton routeName="/" />,
+          headerLeft: () => <LogoutButton />,
         }}
       />
       <Tabs.Screen
         name="tasks"
         options={{
           title: 'Lista de Tarefas',
-          headerTitleAlign: 'center',
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="list" size={size} color={color} />
           ),
-          headerRight: () => (
-            <TouchableOpacity onPress={() => router.push({ pathname: '/tasks', params: { openModal: 'true' } })} style={{ marginRight: 15 }}>
-              <FontAwesome name="plus" size={22} color="#3b82f6" />
-            </TouchableOpacity>
-          ),
-          headerLeft: () => (
-            <TouchableOpacity onPress={handleLogout} style={{ marginLeft: 15 }}>
-              <FontAwesome name="sign-out" size={24} color="#dc3545" />
-            </TouchableOpacity>
-          ),
+          headerRight: () => <AddButton routeName="/tasks" />,
+          headerLeft: () => <LogoutButton />,
         }}
       />
     </Tabs>

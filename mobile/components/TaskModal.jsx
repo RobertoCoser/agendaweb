@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Modal, View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-// Primeiro, instale o Picker: npx expo install @react-native-picker/picker
-// (Execute este comando no terminal na pasta 'mobile')
-
 const TaskModal = ({ isOpen, onClose, onSave, task }) => {
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
@@ -13,12 +10,36 @@ const TaskModal = ({ isOpen, onClose, onSave, task }) => {
     const [category, setCategory] = useState('tarefa');
     const [notes, setNotes] = useState('');
 
+    const formatDateToDisplay = (isoDate) => {
+        if (!isoDate) return '';
+        const [year, month, day] = isoDate.split('-');
+        return `${day}/${month}/${year}`;
+    };
+
+    const formatDateToSave = (displayDate) => {
+        if (!displayDate) return '';
+        const [day, month, year] = displayDate.split('/');
+        return `${year}-${month}-${day}`;
+    };
+
+    const handleDateChange = (text) => {
+        const cleaned = text.replace(/[^0-9]/g, '');
+        let formatted = cleaned;
+        if (cleaned.length > 2) {
+            formatted = `${cleaned.slice(0, 2)}/${cleaned.slice(2)}`;
+        }
+        if (cleaned.length > 4) {
+            formatted = `${cleaned.slice(0, 2)}/${cleaned.slice(2, 4)}/${cleaned.slice(4, 8)}`;
+        }
+        setDate(formatted);
+    };
+
     useEffect(() => {
         if (isOpen) {
             if (task) {
                 const startDate = new Date(task.start);
                 setTitle(task.title);
-                setDate(startDate.toISOString().split('T')[0]);
+                setDate(formatDateToDisplay(startDate.toISOString().split('T')[0]));
                 setStartTime(startDate.toTimeString().substring(0, 5));
                 setEndTime(task.end ? new Date(task.end).toTimeString().substring(0, 5) : '');
                 setCategory(task.category || 'tarefa');
@@ -26,7 +47,7 @@ const TaskModal = ({ isOpen, onClose, onSave, task }) => {
             } else {
                 setTitle('');
                 const today = new Date().toISOString().split('T')[0];
-                setDate(today);
+                setDate(formatDateToDisplay(today));
                 setStartTime('');
                 setEndTime('');
                 setCategory('tarefa');
@@ -36,7 +57,8 @@ const TaskModal = ({ isOpen, onClose, onSave, task }) => {
     }, [task, isOpen]);
 
     const handleSave = () => {
-        onSave({ _id: task?._id, title, date, startTime, endTime, category, notes });
+        const isoDate = formatDateToSave(date);
+        onSave({ _id: task?._id, title, date: isoDate, startTime, endTime, category, notes });
     };
 
     return (
@@ -56,17 +78,24 @@ const TaskModal = ({ isOpen, onClose, onSave, task }) => {
 
                         <Text style={styles.label}>Categoria</Text>
                         <View style={styles.pickerContainer}>
-                            <Picker selectedValue={category} onValueChange={(itemValue) => setCategory(itemValue)}>
-                                <Picker.Item label="Tarefa" value="tarefa" />
-                                <Picker.Item label="Reunião" value="reuniao" />
-                                <Picker.Item label="Aniversário" value="aniversario" />
-                                <Picker.Item label="Prova" value="prova" />
-                                <Picker.Item label="Pessoal" value="pessoal" />
+                            <Picker selectedValue={category} onValueChange={(itemValue) => setCategory(itemValue)} style={styles.picker}>
+                                <Picker.Item label="Tarefa" value="tarefa" style={styles.pickerItem} />
+                                <Picker.Item label="Reunião" value="reuniao" style={styles.pickerItem} />
+                                <Picker.Item label="Aniversário" value="aniversario" style={styles.pickerItem} />
+                                <Picker.Item label="Prova" value="prova" style={styles.pickerItem} />
+                                <Picker.Item label="Pessoal" value="pessoal" style={styles.pickerItem} />
                             </Picker>
                         </View>
 
                         <Text style={styles.label}>Data</Text>
-                        <TextInput style={styles.input} value={date} onChangeText={setDate} placeholder="AAAA-MM-DD" />
+                        <TextInput
+                            style={styles.input}
+                            value={date}
+                            onChangeText={handleDateChange}
+                            placeholder="DD/MM/AAAA"
+                            keyboardType="numeric"
+                            maxLength={10}
+                        />
 
                         <View style={styles.row}>
                             <View style={styles.column}>
@@ -80,7 +109,7 @@ const TaskModal = ({ isOpen, onClose, onSave, task }) => {
                         </View>
 
                         <Text style={styles.label}>Observações</Text>
-                        <TextInput style={[styles.input, { height: 80 }]} value={notes} onChangeText={setNotes} multiline />
+                        <TextInput style={[styles.input, { height: 80, textAlignVertical: 'top' }]} value={notes} onChangeText={setNotes} multiline />
 
                         <View style={styles.modalButtons}>
                             <TouchableOpacity style={[styles.button, styles.cancelButton]} onPress={onClose}>
@@ -99,20 +128,21 @@ const TaskModal = ({ isOpen, onClose, onSave, task }) => {
 
 const styles = StyleSheet.create({
     modalOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.5)' },
-    modalContent: { width: '90%', maxHeight: '80%', backgroundColor: 'white', borderRadius: 12, padding: 20 },
-    modalTitle: { fontSize: 22, fontWeight: 'bold', marginBottom: 20 },
-    label: { fontSize: 14, color: '#6b7280', marginBottom: 5, marginTop: 10 },
-    input: { height: 45, borderColor: '#e5e7eb', borderWidth: 1, borderRadius: 8, paddingHorizontal: 10, backgroundColor: '#f5f6f7', fontSize: 16 },
-    pickerContainer: { borderColor: '#e5e7eb', borderWidth: 1, borderRadius: 8, backgroundColor: '#f5f6f7' },
+    modalContent: { width: '90%', maxHeight: '90%', backgroundColor: 'white', borderRadius: 12, padding: 20 },
+    modalTitle: { fontSize: 22, fontWeight: 'bold', marginBottom: 20, color: '#1f2937' },
+    label: { fontSize: 14, color: '#6b7280', marginBottom: 5, marginTop: 10, fontWeight: '500' },
+    input: { height: 45, borderColor: '#e5e7eb', borderWidth: 1, borderRadius: 8, paddingHorizontal: 10, backgroundColor: '#f9fafb', fontSize: 16, color: '#1f2937' },
+    pickerContainer: { borderColor: '#e5e7eb', borderWidth: 1, borderRadius: 8, backgroundColor: '#f9fafb', height: 45, justifyContent: 'center' },
+    picker: { color: '#1f2937' },
+    pickerItem: { fontSize: 16 },
     row: { flexDirection: 'row', justifyContent: 'space-between' },
     column: { flex: 1, marginRight: 10 },
-    modalButtons: { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 20 },
+    modalButtons: { flexDirection: 'row', justifyContent: 'flex-end', marginTop: 30 },
     button: { paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginLeft: 10 },
-    cancelButton: { borderWidth: 1, borderColor: '#e5e7eb' },
-    cancelButtonText: { color: '#1f2937' },
+    cancelButton: { borderWidth: 1, borderColor: '#e5e7eb', backgroundColor: 'white' },
+    cancelButtonText: { color: '#374151', fontWeight: '500' },
     saveButton: { backgroundColor: '#3b82f6' },
-    saveButtonText: { color: 'white' },
+    saveButtonText: { color: 'white', fontWeight: '500' },
 });
-
 
 export default TaskModal;
